@@ -16,7 +16,11 @@ suspend fun main(args: Array<String>) {
             return@on
         }
 
-        parseMessage(message)
+        val result = parseMessage(message)
+
+        if (result.status != 0) {
+            message.getChannel().createMessage("Something went wrong (${result.status})\nReason: ${result.reason}")
+        }
 
     }
 
